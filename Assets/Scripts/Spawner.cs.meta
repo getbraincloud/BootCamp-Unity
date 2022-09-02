@@ -1,0 +1,19 @@
+fileFormatVersion: 2
+guid: 990eededee826492e8be6f0886ad6938
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - asteroidPrefab: {instanceID: 0}
+  - laserPrefab: {instanceID: 0}
+  - laserImpactPrefab: {instanceID: 0}
+  - explosionPrefab: {instanceID: 0}
+  - enemyPrefab: {instanceID: 0}
+  - pickupPrefab: {instanceID: 0}
+  - shipWingPrefab: {instanceID: 0}
+  - playerShip: {instanceID: 0}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
