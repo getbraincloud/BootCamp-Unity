@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 230395034997794114}
   - component: {fileID: 5311631509818697198}
   m_Layer: 5
-  m_Name: High Score Ranking
+  m_Name: Leaderboard Ranking
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

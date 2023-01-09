@@ -7,8 +7,8 @@ using UnityEngine;
 public class Constants
 {
     // BrainCloud constants
-    public const string kBrainCloudMainHighScoreID = "Main";
-    public const string kBrainCloudDailyHighScoreID = "Daily";
+    public const string kBrainCloudMainLeaderboardID = "Main";
+    public const string kBrainCloudDailyLeaderboardID = "Daily";
     public const int kBrainCloudDefaultMinHighScoreIndex = 0;
     public const int kBrainCloudDefaultMaxHighScoreIndex = 9;
     public const string kBrainCloudGlobalEntityIndexedID = "Level";

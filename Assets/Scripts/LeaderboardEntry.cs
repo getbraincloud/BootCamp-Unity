@@ -4,7 +4,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class HighScore
+public class LeaderboardEntry
 {
     private string m_Nickname;
     private float m_Time;
@@ -12,7 +12,7 @@ public class HighScore
     private bool m_IsUserScore;
 
 
-    public HighScore(string nickname, int rank, float time)
+    public LeaderboardEntry(string nickname, int rank, float time)
     {
         m_Nickname = nickname;
         m_Rank = rank;

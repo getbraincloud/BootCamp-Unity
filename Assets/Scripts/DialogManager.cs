@@ -12,7 +12,7 @@ public class DialogManager : MonoBehaviour
     [SerializeField] private PlayAgainDialog playAgainDialog;
     [SerializeField] private AchievementDialog achievementDialog;
     [SerializeField] private StatisticsDialog statisticsDialog;
-    [SerializeField] private HighScoreDialog highScoreDialog;
+    [SerializeField] private LeaderboardDialog leaderboardDialog;
     [SerializeField] private PostScoreDialog postScoreDialog;
     [SerializeField] private ChangeUsernameDialog changeUsernameDialog;
     [SerializeField] private UniversalLoginDialog universaleLoginDialog;
@@ -45,8 +45,8 @@ public class DialogManager : MonoBehaviour
         achievementDialog.DialogHidden = OnDialogHidden;
         statisticsDialog.DialogShown = OnDialogShown;
         statisticsDialog.DialogHidden = OnDialogHidden;
-        highScoreDialog.DialogShown = OnDialogShown;
-        highScoreDialog.DialogHidden = OnDialogHidden;
+        leaderboardDialog.DialogShown = OnDialogShown;
+        leaderboardDialog.DialogHidden = OnDialogHidden;
         postScoreDialog.DialogShown = OnDialogShown;
         postScoreDialog.DialogHidden = OnDialogHidden;
         changeUsernameDialog.DialogShown = OnDialogShown;
@@ -109,10 +109,10 @@ public class DialogManager : MonoBehaviour
             Show(statisticsDialog);
     }
 
-    public void ShowHighScoresDialog()
+    public void ShowLeaderboardsDialog()
     {
-        if (!highScoreDialog.IsShowing())
-            Show(highScoreDialog);
+        if (!leaderboardDialog.IsShowing())
+            Show(leaderboardDialog);
     }
 
     public void ShowUniversalLoginDialog(Network.AuthenticationRequestCompleted authenticationRequestCompleted = null, Network.AuthenticationRequestFailed authenticationRequestFailed = null)

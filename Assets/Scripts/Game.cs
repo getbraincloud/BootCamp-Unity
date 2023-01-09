@@ -17,7 +17,7 @@ public class Game : MonoBehaviour
     private float m_LevelIndicatorDisplayTime;
     private float m_EndOfGameDisplayTime;
     private int m_LevelIndex = -1;
-    private int m_HighScoreIndex = -1;
+    private int m_LeaderboardEntryIndex = -1;
     private UserData m_UserData;
 
 
@@ -100,11 +100,15 @@ public class Game : MonoBehaviour
             {
                 CheckEndlessModeTimeAchievements();
 
-                if (m_HighScoreIndex != -1)
+                if (m_LeaderboardEntryIndex != -1)
                 {
-                    HighScore hs = HighScoreManager.sharedInstance.GetHighScoreAtIndex(m_HighScoreIndex);
-                    if (hs != null && m_ElapsedTime > hs.Time)
-                        DisplayNextHighScore();
+                    Leaderboard leaderboard = LeaderboardsManager.sharedInstance.GetLeaderboardByName(Constants.kBrainCloudMainLeaderboardID);
+                    if (leaderboard != null)
+                    {
+                        LeaderboardEntry leaderboardEntry = leaderboard.GetLeaderboardEntryAtIndex(m_LeaderboardEntryIndex);
+                        if (leaderboardEntry != null && m_ElapsedTime > leaderboardEntry.Time)
+                            DisplayNextHighScore();
+                    }
                 }
             }
             else if (m_Mode == Mode.Horde)
@@ -150,8 +154,8 @@ public class Game : MonoBehaviour
             m_GameState = GameState.LoadingData;
 
             Network.sharedInstance.RequestGlobalEntityLevelData(OnGlobalEntityLevelDataRequestCompleted);
-            Network.sharedInstance.RequestLeaderboard(Constants.kBrainCloudMainHighScoreID, OnLeaderboardRequestCompleted);
-            Network.sharedInstance.RequestLeaderboard(Constants.kBrainCloudDailyHighScoreID, OnLeaderboardRequestCompleted);
+            Network.sharedInstance.RequestLeaderboard(Constants.kBrainCloudMainLeaderboardID, OnLeaderboardRequestCompleted);
+            Network.sharedInstance.RequestLeaderboard(Constants.kBrainCloudDailyLeaderboardID, OnLeaderboardRequestCompleted);
 
             Network.sharedInstance.RequestUserStatistics(OnUserStatisticsRequestCompleted);
             Network.sharedInstance.RequestReadAchievements(OnAchievementRequestCompleted);
@@ -245,10 +249,12 @@ public class Game : MonoBehaviour
 
         if (m_Mode == Mode.Endless)
         {
-            if (HighScoreManager.sharedInstance.GetCount() > 0)
+            Leaderboard mainLeaderboard = LeaderboardsManager.sharedInstance.GetLeaderboardByName(Constants.kBrainCloudMainLeaderboardID);
+
+            if (mainLeaderboard != null && mainLeaderboard.GetCount() > 0)
             {
-                m_HighScoreIndex = HighScoreManager.sharedInstance.GetCount() - 1;
-                hud.PushHighScore(HighScoreManager.sharedInstance.GetHighScoreAtIndex(m_HighScoreIndex));
+                    m_LeaderboardEntryIndex = mainLeaderboard.GetCount() - 1;
+                    hud.PushLeaderboardEntry(mainLeaderboard.GetLeaderboardEntryAtIndex(m_LeaderboardEntryIndex));
             }
 
             hud.ShowLevel(-1, "");
@@ -303,15 +309,17 @@ public class Game : MonoBehaviour
 
     private void DisplayNextHighScore()
     {
-        if (m_HighScoreIndex == -1 || HighScoreManager.sharedInstance.GetCount() == 0)
+        Leaderboard leaderboard = LeaderboardsManager.sharedInstance.GetLeaderboardByName(Constants.kBrainCloudMainLeaderboardID);
+
+        if (m_LeaderboardEntryIndex == -1 || leaderboard == null || leaderboard.GetCount() == 0)
             return;
 
-        if (m_HighScoreIndex > 0)
+        if (m_LeaderboardEntryIndex > 0)
         {
-            m_HighScoreIndex--;
-            hud.PushHighScore(HighScoreManager.sharedInstance.GetHighScoreAtIndex(m_HighScoreIndex));
+            m_LeaderboardEntryIndex--;
+            hud.PushLeaderboardEntry(leaderboard.GetLeaderboardEntryAtIndex(m_LeaderboardEntryIndex));
         }
-        else if (m_HighScoreIndex == 0)
+        else if (m_LeaderboardEntryIndex == 0)
         {
             hud.SetPlayerHasAllTimeHighScore();
         }
@@ -378,23 +386,23 @@ public class Game : MonoBehaviour
 
     private void OnLeaderboardRequestCompleted(Leaderboard leaderboard)
     {
-        HighScoreManager.sharedInstance.AddLeaderboard(leaderboard);
+        LeaderboardsManager.sharedInstance.AddLeaderboard(leaderboard);
 
         if (IsGameOver())
         {
-            if (m_Mode == Mode.Endless && leaderboard.Name == Constants.kBrainCloudMainHighScoreID)
+            if (m_Mode == Mode.Endless && leaderboard.Name == Constants.kBrainCloudMainLeaderboardID)
             {
                 DialogManager.sharedInstance.ShowPlayAgainDialog();
-                DialogManager.sharedInstance.ShowHighScoresDialog();
+                DialogManager.sharedInstance.ShowLeaderboardsDialog();
             }
         }
     }
 
     private void OnPostScoreRequestCompleted()
     {
-        HighScoreManager.sharedInstance.SetUserTime(m_ElapsedTime);
-        Network.sharedInstance.RequestLeaderboard(Constants.kBrainCloudMainHighScoreID, OnLeaderboardRequestCompleted);
-        Network.sharedInstance.RequestLeaderboard(Constants.kBrainCloudDailyHighScoreID, OnLeaderboardRequestCompleted);
+        LeaderboardsManager.sharedInstance.SetUserTime(m_ElapsedTime);
+        Network.sharedInstance.RequestLeaderboard(Constants.kBrainCloudMainLeaderboardID, OnLeaderboardRequestCompleted);
+        Network.sharedInstance.RequestLeaderboard(Constants.kBrainCloudDailyLeaderboardID, OnLeaderboardRequestCompleted);
     }
 
     private void OnGlobalEntityLevelDataRequestCompleted(ref List<LevelData> levelData)

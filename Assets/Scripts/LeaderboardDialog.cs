@@ -6,9 +6,9 @@ using UnityEngine;
 using UnityEngine.UI;
 
 
-public class HighScoreDialog : Dialog
+public class LeaderboardDialog : Dialog
 {
-    [SerializeField] private HighScoreRanking[] highScoreRankings;
+    [SerializeField] private LeaderboardRanking[] leaderboardRankings;
     [SerializeField] private Button leftSegmentButton;
     [SerializeField] private Button rightSegmentButton;
 
@@ -21,19 +21,19 @@ public class HighScoreDialog : Dialog
     protected override void OnShow()
     {
         SetSegmentControlState(SegmentControlState.Main);
-        SetLeaderboardData(Constants.kBrainCloudMainHighScoreID);
+        SetLeaderboardData(Constants.kBrainCloudMainLeaderboardID);
     }
 
     public void OnMainScoresClicked()
     {
         SetSegmentControlState(SegmentControlState.Main);
-        SetLeaderboardData(Constants.kBrainCloudMainHighScoreID);
+        SetLeaderboardData(Constants.kBrainCloudMainLeaderboardID);
     }
 
     public void OnDailyScoresClicked()
     {
         SetSegmentControlState(SegmentControlState.Daily);
-        SetLeaderboardData(Constants.kBrainCloudDailyHighScoreID);
+        SetLeaderboardData(Constants.kBrainCloudDailyLeaderboardID);
     }
 
     private void SetSegmentControlState(SegmentControlState segmentControlState)
@@ -53,26 +53,26 @@ public class HighScoreDialog : Dialog
 
     private void SetLeaderboardData(string leaderboardId)
     {
-        HighScore hs;
+        LeaderboardEntry leaderboardEntry;
 
         ResetLeaderboardData();
 
-        Leaderboard leaderboard = HighScoreManager.sharedInstance.GetLeaderboardByName(leaderboardId);
+        Leaderboard leaderboard = LeaderboardsManager.sharedInstance.GetLeaderboardByName(leaderboardId);
 
         if (leaderboard != null)
         {
             for (int i = 0; i < leaderboard.GetCount(); i++)
             {
-                hs = leaderboard.GetHighScoreAtIndex(i);
-                if (hs != null)
-                    highScoreRankings[i].Set(hs);
+                leaderboardEntry = leaderboard.GetLeaderboardEntryAtIndex(i);
+                if (leaderboardEntry != null && i < leaderboardRankings.Length)
+                    leaderboardRankings[i].Set(leaderboardEntry);
             }
         }
     }
 
     private void ResetLeaderboardData()
     {
-        foreach (HighScoreRanking hsr in highScoreRankings)
+        foreach (LeaderboardRanking hsr in leaderboardRankings)
             hsr.Reset();
     }
 

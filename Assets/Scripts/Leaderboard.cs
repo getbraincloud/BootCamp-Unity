@@ -7,28 +7,28 @@ using UnityEngine;
 public class Leaderboard
 {
     private string m_Name;
-    private List<HighScore> m_HighScores;
+    private List<LeaderboardEntry> m_Leaderboard;
 
     public string Name
     {
         get { return m_Name; }
     }
 
-    public Leaderboard(string name, List<HighScore> highScores)
+    public Leaderboard(string name, List<LeaderboardEntry> leaderboard)
     {
         m_Name = name;
-        m_HighScores = highScores;
+        m_Leaderboard = leaderboard;
     }
 
-    public HighScore GetHighScoreAtIndex(int index)
+    public LeaderboardEntry GetLeaderboardEntryAtIndex(int index)
     {
         if (index >= 0 && index < GetCount())
-            return m_HighScores[index];
+            return m_Leaderboard[index];
         return null;
     }
 
     public int GetCount()
     {
-        return m_HighScores.Count;
+        return m_Leaderboard.Count;
     }
 }

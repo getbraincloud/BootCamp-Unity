@@ -98,11 +98,11 @@ public class HeadsUpDisplay : MonoBehaviour
         m_HighScores.Clear();
     }
 
-    public void PushHighScore(HighScore highScore)
+    public void PushLeaderboardEntry(LeaderboardEntry leaderboardEntry)
     { 
         GameObject temp;
         temp = Instantiate(scrollingElementPrefab, highScoreMask.transform);
-        temp.GetComponent<HeadsUpDisplayScrollingElement>().Init(highScore, GetHighScoreEnteringPosition());
+        temp.GetComponent<HeadsUpDisplayScrollingElement>().Init(leaderboardEntry, GetHighScoreEnteringPosition());
 
         PushHighScoreElement(temp);
     }

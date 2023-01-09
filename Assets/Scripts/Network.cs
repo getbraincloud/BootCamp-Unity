@@ -44,11 +44,8 @@ public class Network : MonoBehaviour
     public static Network sharedInstance;
 
     private BrainCloudWrapper m_BrainCloud;
-    private string m_ProfileID;
-    private string m_AnonymousID;
     private string m_Username;
-    private bool m_IsAuthenticated = false;
-    List<string> m_IdentityTypesList = new List<string>();
+    private List<string> m_IdentityTypesList = new List<string>();
     private TwitchHelper m_TwitchHelper = null;
     private AuthenticationRequestCompleted m_AuthenticationRequestCompleted = null;
     private AuthenticationRequestFailed m_AuthenticationRequestFailed = null;
@@ -66,10 +63,6 @@ public class Network : MonoBehaviour
 
         // Log the BrainCloud client version
         Debug.Log("BrainCloud client version: " + m_BrainCloud.Client.BrainCloudClientVersion);
-
-        // Get the Profile and Anonymous IDs (these are saved to the device, used for automatic reconnect)
-        m_ProfileID = m_BrainCloud.GetStoredProfileId();
-        m_AnonymousID = m_BrainCloud.GetStoredAnonymousId();
     }
 
     void Update()
@@ -85,12 +78,12 @@ public class Network : MonoBehaviour
 
     public bool HasAuthenticatedPreviously()
     {
-        return m_ProfileID != "" && m_AnonymousID != "";
+        return m_BrainCloud.GetStoredProfileId() != "" && m_BrainCloud.GetStoredAnonymousId() != "";
     }
 
     public bool IsAuthenticated()
     {
-        return m_IsAuthenticated;
+        return m_BrainCloud.Client.Authenticated;
     }
 
     public bool IsUsernameSaved()
@@ -101,7 +94,6 @@ public class Network : MonoBehaviour
     public void ResetStoredProfileId()
     {
         m_BrainCloud.ResetStoredProfileId();
-        m_ProfileID = "";
     }
 
     public void LogOut(BrainCloudLogOutCompleted brainCloudLogOutCompleted = null, BrainCloudLogOutFailed brainCloudLogOutFailed = null)
@@ -113,9 +105,6 @@ public class Network : MonoBehaviour
             {
                 Debug.Log("LogOut success: " + responseData);
 
-                m_IsAuthenticated = false;
-                m_ProfileID = "";
-                m_AnonymousID = "";
                 m_Username = "";
 
                 // The user logged out, clear the persisted data related to their account
@@ -374,7 +363,7 @@ public class Network : MonoBehaviour
                 JsonData jsonData = JsonMapper.ToObject(responseData);
                 JsonData leaderboard = jsonData["data"]["leaderboard"];
 
-                List<HighScore> highScoresList = new List<HighScore>();
+                List<LeaderboardEntry> leaderboardEntriesList = new List<LeaderboardEntry>();
                 int rank = 0;
                 string nickname;
                 long ms = 0;
@@ -389,11 +378,11 @@ public class Network : MonoBehaviour
                         ms = long.Parse(leaderboard[i]["score"].ToString());
                         time = (float)ms / 1000.0f;
 
-                        highScoresList.Add(new HighScore(nickname, rank, time));
+                        leaderboardEntriesList.Add(new LeaderboardEntry(nickname, rank, time));
                     }
                 }
 
-                Leaderboard lb = new Leaderboard(leaderboardId, highScoresList);
+                Leaderboard lb = new Leaderboard(leaderboardId, leaderboardEntriesList);
 
                 if (leaderboardRequestCompleted != null)
                     leaderboardRequestCompleted(lb);
@@ -420,12 +409,12 @@ public class Network : MonoBehaviour
         }
     }
 
-    public void PostScoreToLeaderboard(float time, PostScoreRequestCompleted postScoreRequestCompleted = null, PostScoreRequestFailed postScoreRequestFailed = null)
+    public void PostScoreToLeaderboard(string leaderboardID, float time, PostScoreRequestCompleted postScoreRequestCompleted = null, PostScoreRequestFailed postScoreRequestFailed = null)
     {
-        PostScoreToLeaderboard(time, m_Username, postScoreRequestCompleted, postScoreRequestFailed);
+        PostScoreToLeaderboard(leaderboardID, time, m_Username, postScoreRequestCompleted, postScoreRequestFailed);
     }
 
-    public void PostScoreToLeaderboard(float time, string nickname, PostScoreRequestCompleted postScoreRequestCompleted = null, PostScoreRequestFailed postScoreRequestFailed = null)
+    public void PostScoreToLeaderboard(string leaderboardID, float time, string nickname, PostScoreRequestCompleted postScoreRequestCompleted = null, PostScoreRequestFailed postScoreRequestFailed = null)
     {
         if (IsAuthenticated())
         {
@@ -450,7 +439,7 @@ public class Network : MonoBehaviour
             // Make the BrainCloud request
             long score = (long)(time * 1000.0f);   // Convert the time from seconds to milleseconds
             string jsonOtherData = "{\"nickname\":\"" + nickname + "\"}";
-            m_BrainCloud.LeaderboardService.PostScoreToLeaderboard(Constants.kBrainCloudMainHighScoreID, score, jsonOtherData, successCallback, failureCallback);
+            m_BrainCloud.LeaderboardService.PostScoreToLeaderboard(leaderboardID, score, jsonOtherData, successCallback, failureCallback);
         }
         else
         {
@@ -911,8 +900,6 @@ public class Network : MonoBehaviour
 
     private void HandleAuthenticationSuccess(string responseData, object cbObject, AuthenticationRequestCompleted authenticationRequestCompleted)
     {
-        m_IsAuthenticated = true;
-
         // Read the player name from the response data
         JsonData jsonData = JsonMapper.ToObject(responseData);
         m_Username = jsonData["data"]["playerName"].ToString();
@@ -935,7 +922,6 @@ public class Network : MonoBehaviour
         {
             Debug.Log("AuthenticateExternal Twitch success: " + responseData);
 
-            m_IsAuthenticated = true;
             m_Username = username;
 
             if (m_AuthenticationRequestCompleted != null)

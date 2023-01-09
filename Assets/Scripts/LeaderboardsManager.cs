@@ -4,9 +4,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class HighScoreManager : MonoBehaviour
+public class LeaderboardsManager : MonoBehaviour
 {
-    public static HighScoreManager sharedInstance;
+    public static LeaderboardsManager sharedInstance;
 
     private List<Leaderboard> m_Leaderboards;
     private float m_UserTime;
@@ -17,35 +17,15 @@ public class HighScoreManager : MonoBehaviour
         m_Leaderboards = new List<Leaderboard>();
     }
 
-    public int GetCount(string leaderboardID = Constants.kBrainCloudMainHighScoreID)
-    {
-        Leaderboard leaderboard = GetLeaderboardByName(leaderboardID);
-
-        if (leaderboard != null)
-            return leaderboard.GetCount();
-
-        return 0;
-    }
-
-    public HighScore GetHighScoreAtIndex(int index, string leaderboardID = Constants.kBrainCloudMainHighScoreID)
-    {
-        Leaderboard leaderboard = GetLeaderboardByName(leaderboardID);
-
-        if (leaderboard != null)
-            return leaderboard.GetHighScoreAtIndex(index);
-
-        return null;
-    }
-
     public void AddLeaderboard(Leaderboard leaderboard)
     {
         if (m_UserTime > 0.0f)
         {
             for (int i = 0; i < leaderboard.GetCount(); i++)
             {
-                if (leaderboard.GetHighScoreAtIndex(i).Time == m_UserTime)
+                if (leaderboard.GetLeaderboardEntryAtIndex(i).Time == m_UserTime)
                 {
-                    leaderboard.GetHighScoreAtIndex(i).IsUserScore = true;
+                    leaderboard.GetLeaderboardEntryAtIndex(i).IsUserScore = true;
                     break;
                 }
             }
@@ -68,7 +48,7 @@ public class HighScoreManager : MonoBehaviour
         return null;
     }
 
-    public int GetLeaderboardCount()
+    public int GetCount()
     {
         return m_Leaderboards.Count;
     }

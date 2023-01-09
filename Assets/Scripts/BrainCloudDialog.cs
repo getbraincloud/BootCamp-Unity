@@ -32,9 +32,9 @@ public class BrainCloudDialog : Dialog
         DialogManager.sharedInstance.ShowChangeUsernameDialog();
     }
 
-    public void OnHighScoresButtonClicked()
+    public void OnLeaderboardsButtonClicked()
     {
-        DialogManager.sharedInstance.ShowHighScoresDialog();
+        DialogManager.sharedInstance.ShowLeaderboardsDialog();
     }
 
     public void OnStatisticsButtonClicked()

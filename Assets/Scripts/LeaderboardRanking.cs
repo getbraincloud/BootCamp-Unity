@@ -7,7 +7,7 @@ using UnityEngine;
 using TMPro;
 
 
-public class HighScoreRanking : MonoBehaviour
+public class LeaderboardRanking : MonoBehaviour
 {
     [SerializeField] private TMP_Text rank;
     [SerializeField] private TMP_Text username;
@@ -20,7 +20,7 @@ public class HighScoreRanking : MonoBehaviour
         this.time.text = "";
     }
 
-    public void Set(HighScore highScore)
+    public void Set(LeaderboardEntry highScore)
     {
         this.rank.text = highScore.Rank.ToString() + ".";
         this.username.text = highScore.Nickname;

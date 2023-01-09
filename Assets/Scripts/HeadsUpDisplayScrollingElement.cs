@@ -40,9 +40,9 @@ public class HeadsUpDisplayScrollingElement : MonoBehaviour
         }
     }
 
-    public void Init(HighScore highScore, Vector2 position, HeadsUpDisplayScrollingElementHoldCompleted headsUpDisplayScrollingElement = null)
+    public void Init(LeaderboardEntry leaderboardEntry, Vector2 position, HeadsUpDisplayScrollingElementHoldCompleted headsUpDisplayScrollingElement = null)
     {
-        Init("High Score #" + highScore.Rank.ToString() + ": " + TimeSpan.FromSeconds(highScore.Time).ToString(@"mm\:ss"), position, headsUpDisplayScrollingElement);
+        Init("High Score #" + leaderboardEntry.Rank.ToString() + ": " + TimeSpan.FromSeconds(leaderboardEntry.Time).ToString(@"mm\:ss"), position, headsUpDisplayScrollingElement);
     }
 
     public void Init(Achievement achievement, Vector2 position, HeadsUpDisplayScrollingElementHoldCompleted headsUpDisplayScrollingElement = null)

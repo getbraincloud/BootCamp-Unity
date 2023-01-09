@@ -277,7 +277,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6885281643731939932, guid: b9620f068476f46b88147d1e6420942f, type: 3}
       propertyPath: m_RootOrder
-      value: 10
+      value: 11
       objectReference: {fileID: 0}
     - target: {fileID: 6885281643731939932, guid: b9620f068476f46b88147d1e6420942f, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1477,7 +1477,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 16
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &199926469
 GameObject:
@@ -1720,7 +1720,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 9
+  m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &216362490
 MonoBehaviour:
@@ -1789,7 +1789,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 15
+  m_RootOrder: 16
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &228606507
 MonoBehaviour:
@@ -4344,7 +4344,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &518681942
 GameObject:
@@ -4404,7 +4404,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: High Scores
+  m_text: Leaderboards
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 5a372bd84733d4f42b9097c07820b931, type: 2}
   m_sharedMaterial: {fileID: -5141117726948541547, guid: 5a372bd84733d4f42b9097c07820b931, type: 2}
@@ -4597,7 +4597,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &537468470
 GameObject:
@@ -5579,7 +5579,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &621700371
 GameObject:
@@ -5823,7 +5823,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1750636883}
         m_TargetAssemblyTypeName: InGameBrainCloudDialog, Assembly-CSharp
-        m_MethodName: OnHighScoresButtonClicked
+        m_MethodName: OnLeaderboardsButtonClicked
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -7698,7 +7698,7 @@ RectTransform:
   - {fileID: 1576328029}
   - {fileID: 278772170}
   m_Father: {fileID: 0}
-  m_RootOrder: 14
+  m_RootOrder: 15
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -8667,7 +8667,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Endless Mode High Scores
+  m_text: Endless Mode Leaderboard
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 5a372bd84733d4f42b9097c07820b931, type: 2}
   m_sharedMaterial: {fileID: -5141117726948541547, guid: 5a372bd84733d4f42b9097c07820b931, type: 2}
@@ -12725,7 +12725,7 @@ GameObject:
   - component: {fileID: 1522371138}
   - component: {fileID: 1522371137}
   m_Layer: 0
-  m_Name: HighScoreManager
+  m_Name: LeaderboardsManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -13283,7 +13283,7 @@ Transform:
   - {fileID: 1635163348}
   - {fileID: 341775010}
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1680457301
 GameObject:
@@ -13455,7 +13455,7 @@ MonoBehaviour:
   playAgainDialog: {fileID: 1850388087474577950}
   achievementDialog: {fileID: 366427380778020039}
   statisticsDialog: {fileID: 4222427173060608923}
-  highScoreDialog: {fileID: 3605647583331215343}
+  leaderboardDialog: {fileID: 3605647583331215343}
   postScoreDialog: {fileID: 814314670744721012}
   changeUsernameDialog: {fileID: 8119078311582796244}
   universaleLoginDialog: {fileID: 1855184277704127651}
@@ -14136,7 +14136,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 12
+  m_RootOrder: 13
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1765535684
 GameObject:
@@ -15022,7 +15022,7 @@ Transform:
   m_Children:
   - {fileID: 5786544195381913307}
   m_Father: {fileID: 0}
-  m_RootOrder: 11
+  m_RootOrder: 12
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1886422789
 MonoBehaviour:
@@ -16060,7 +16060,7 @@ RectTransform:
   - {fileID: 1591798006}
   - {fileID: 1785227329}
   m_Father: {fileID: 0}
-  m_RootOrder: 13
+  m_RootOrder: 14
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
@@ -20141,7 +20141,7 @@ GameObject:
   - component: {fileID: 1250843630498964437}
   - component: {fileID: 6620238678276842361}
   m_Layer: 5
-  m_Name: High Score Ranking (10)
+  m_Name: Leaderboard Ranking (10)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -20596,7 +20596,7 @@ GameObject:
   - component: {fileID: 1005869245588952021}
   - component: {fileID: 5148075176333448057}
   m_Layer: 5
-  m_Name: High Score Ranking (7)
+  m_Name: Leaderboard Ranking (7)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -22430,7 +22430,7 @@ GameObject:
   - component: {fileID: 4242536888145244849}
   - component: {fileID: 8098799744801714717}
   m_Layer: 5
-  m_Name: High Score Ranking (1)
+  m_Name: Leaderboard Ranking (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -24430,7 +24430,7 @@ GameObject:
   - component: {fileID: 3676641786182952078}
   - component: {fileID: 8755628376729297954}
   m_Layer: 5
-  m_Name: High Score Ranking (3)
+  m_Name: Leaderboard Ranking (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -25109,7 +25109,7 @@ GameObject:
   - component: {fileID: 3605647583331215341}
   - component: {fileID: 3605647583331215343}
   m_Layer: 5
-  m_Name: High Score Dialog
+  m_Name: Leaderboards Dialog
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -25127,7 +25127,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a138ce4dd04674490a087e7c28f507ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  highScoreRankings:
+  leaderboardRankings:
   - {fileID: 8098799744801714717}
   - {fileID: 2535631462370263058}
   - {fileID: 8755628376729297954}
@@ -25848,7 +25848,7 @@ GameObject:
   - component: {fileID: 2874683043275306169}
   - component: {fileID: 7881544918153180181}
   m_Layer: 5
-  m_Name: High Score Ranking (4)
+  m_Name: Leaderboard Ranking (4)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -26515,7 +26515,7 @@ GameObject:
   - component: {fileID: 2666512357851800210}
   - component: {fileID: 8035945089622565438}
   m_Layer: 5
-  m_Name: High Score Ranking (5)
+  m_Name: Leaderboard Ranking (5)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -31747,7 +31747,7 @@ GameObject:
   - component: {fileID: 5649909565598966455}
   - component: {fileID: 354853598487044635}
   m_Layer: 5
-  m_Name: High Score Ranking (8)
+  m_Name: Leaderboard Ranking (8)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -33761,7 +33761,7 @@ GameObject:
   - component: {fileID: 9042166617057331028}
   - component: {fileID: 4032983389732882424}
   m_Layer: 5
-  m_Name: High Score Ranking (9)
+  m_Name: Leaderboard Ranking (9)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -34659,7 +34659,7 @@ GameObject:
   - component: {fileID: 8414747983798297308}
   - component: {fileID: 4486433030763061872}
   m_Layer: 5
-  m_Name: High Score Ranking (6)
+  m_Name: Leaderboard Ranking (6)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -35054,7 +35054,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: High Scores
+  m_text: Leaderboards
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 5a372bd84733d4f42b9097c07820b931, type: 2}
   m_sharedMaterial: {fileID: -5141117726948541547, guid: 5a372bd84733d4f42b9097c07820b931, type: 2}
@@ -35504,7 +35504,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 5180050623256871244}
         m_TargetAssemblyTypeName: BrainCloudDialog, Assembly-CSharp
-        m_MethodName: OnHighScoresButtonClicked
+        m_MethodName: OnLeaderboardsButtonClicked
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -35527,7 +35527,7 @@ GameObject:
   - component: {fileID: 7899355654178794758}
   - component: {fileID: 7899355654178794753}
   m_Layer: 5
-  m_Name: HighScores Button
+  m_Name: Leaderboards Button
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -36551,7 +36551,7 @@ GameObject:
   - component: {fileID: 7616832469335998654}
   - component: {fileID: 2535631462370263058}
   m_Layer: 5
-  m_Name: High Score Ranking (2)
+  m_Name: Leaderboard Ranking (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
